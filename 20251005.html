@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>2025-26 臺灣高級球聯盟賽 賽季1-2 候補登記「報名表格」</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .iframe-container {
+      width: 100vw;
+      height: 100vh; /* fill remaining space */
+      margin-top: 200px;
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+      margin-top: 200px;
+    }
+    .denied {
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const validTokens = ['aF9kT72mQxB1zLp'];
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+
+    // Clear the body before inserting any content
+    document.body.innerHTML = "";
+
+    // Simple device detection
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+
+    if (validTokens.includes(token)) {
+      // Hide token from URL
+      if (window.history.replaceState) {
+        const cleanURL = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, document.title, cleanURL);
+      }
+
+      // Choose iframe source based on device
+      const iframeSrc = isMobile
+        ? "https://forms.gle/efLSackFRjcj7R4ZA"
+        : "https://forms.gle/efLSackFRjcj7R4ZA";
+
+      const iframe = document.createElement('iframe');
+      iframe.src = iframeSrc;
+      document.body.appendChild(iframe);
+    } else {
+      // Show access denied message
+      document.body.innerHTML = `
+        <div class="denied">
+          <h1>🚫 存取已被拒絕</h1>
+          <h3>此表單只能於現場存取並填寫</h3>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
